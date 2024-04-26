@@ -1,0 +1,12 @@
+# Dockerfile for Apache web server
+FROM php:7.4-apache
+
+# Install PHP extensions
+RUN docker-php-ext-install mysqli
+
+# Copy website files to Apache document root
+COPY . /var/www/html/
+
+# Expose port 80 (already done in the base image)
+
+# Start Apache in the foreground (already done in the base image)

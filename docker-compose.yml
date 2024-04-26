@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_web
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: team_database
+    volumes:
+      - ./index.html:/var/www/html/index.html
+      - ./team_data_page.php:/var/www/html/team_data_page.php
+      - ./styles.css:/var/www/html/styles.css
+      - ./code.php:/var/www/html/code.php
+      - ./wallpaper.jpg:/var/www/html/wallpaper.jpg
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: team_database

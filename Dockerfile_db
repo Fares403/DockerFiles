@@ -1,0 +1,9 @@
+# Dockerfile for MySQL database
+FROM mysql:5.7
+
+# Copy initialization SQL script
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Set environment variables
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=team_database
